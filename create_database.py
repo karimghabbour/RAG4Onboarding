@@ -6,6 +6,10 @@ from langchain_community.vectorstores.chroma import Chroma
 import os 
 import glob
 import shutil
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 #Set path to Chroma Database & Sources 
 CHROMA_PATH = "chroma"
@@ -58,8 +62,9 @@ def save_to_chroma(chunks: list[Document]):
         shutil.rmtree(CHROMA_PATH) #Delete old DB.
 
     # Create a new DB from the documents.
+    openai_api_key = os.getenv('OPENAI_API_KEY')
     db = Chroma.from_documents(
-        chunks, OpenAIEmbeddings(), persist_directory=CHROMA_PATH
+        chunks, OpenAIEmbeddings(openai_api_key=openai_api_key), persist_directory=CHROMA_PATH
     )
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
 
