@@ -7,7 +7,8 @@
 - Karim (Community Project Development & AI Community Lead), Nicolas (UX & AI Community Co-Lead)
 - Advisory & Stream Enablement:
 - Filomena (Alliances & Finance), Adriano (Internal Stakeholder Management)
- 
+- Jessica: Program Director 
+- Gokul: Executive Sponsor  
 ----
 
 # Description of HPE Barcelona AI Community Roles & Their Responsibilities 
