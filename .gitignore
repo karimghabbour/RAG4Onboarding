@@ -167,3 +167,5 @@ chroma_db/
 
 chroma/
 
+#Model folders 
+models/
