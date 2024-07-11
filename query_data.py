@@ -1,15 +1,20 @@
 from dataclasses import dataclass
 from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
+#from langchain_openai import OpenAIEmbeddings -> no need anymore
+#from langchain_openai import ChatOpenAI -> no need anymore 
+#from langchain.prompts import ChatPromptTemplate -> no need anymore 
 from dotenv import load_dotenv
 import os
+from get_chat_model import get_chat_model
+from get_embedding_function import get_embedding_function
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+
 
 
 # Specify Path for Chroma Database 
 CHROMA_PATH = "chroma"
-load_dotenv()
+#load_dotenv() -> no need for API key anymore
 
 
 # Prompt template that system should follow 
@@ -25,7 +30,7 @@ Answer the question based on the above context: {question}
 
 def query_data(query_text):
     # Prepare the DB and use same embedding function used to create it 
-    embedding_function = OpenAIEmbeddings()
+    embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
     # Perform a similarity search in the DB using the query text
@@ -37,16 +42,18 @@ def query_data(query_text):
     
     # Format context for the prompt 
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
-    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
-    prompt = prompt_template.format(context=context_text, question=query_text)
+    prompt = PROMPT_TEMPLATE.format(context=context_text, question=query_text)
     print(prompt)
 
-    # Get response from the model
-    model = ChatOpenAI()
-    response = model.invoke(prompt)
+    # Get tokenizer and model
+    tokenizer, model = get_chat_model()
 
-    # Extract the actual content
-    response_text = response.content  # Correct way to access the content of AIMessage
+    # Tokenize input
+    inputs = tokenizer(prompt, return_tensors='pt')
+
+    # Generate response
+    outputs = model.generate(**inputs)
+    response_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     # Collect sources
     sources = [doc.metadata.get("source", None) for doc, _score in results]
