@@ -16,7 +16,7 @@ Answer the question based only on the following context:
 
 ---
 
-Answer the question based on the above context: {question}
+Answer the question based on the above context (But without mentioning that the answer is based on the context): {question}
 """
 
 def query_data(query_text):

@@ -1,4 +1,3 @@
-# Help me file from Onboarding Compiled: 
 
 [How to request HPE badge
 If you need to send your request:
