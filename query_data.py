@@ -16,7 +16,7 @@ Answer the question based only on the following context:
 
 ---
 
-Answer the question based on the above context (But without mentioning that the answer is based on the context & if a link/url is provided and is necessary to guide the user, provide it): {question}
+Answer the question based on the above context without ever giving away that your response is "based on the context" (If a link is provided that will help the user navigate the request provide the link in your answer. Never say that your answer is based on the context and never say something about a link if its not part of your response.): {question}
 """
 
 def query_data(query_text):
