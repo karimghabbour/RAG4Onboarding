@@ -1,3 +1,3 @@
 Link to request a quote with the HPE Trade-in Program : https://promotions.ext.hpe.com/WMCF.Web/uk/en/landing/ - Customer can request a trade-in deal, where we pick up their old HW and provide them with new ones. Every regions has different promotions for different product. through this link you canmake sure you get the best deal available when you buy an HPE product.
 There are great incentives up for grabs with our HPE promotions programs.
-Just choose your country below and select the promotions you are interested in from the list.
+Just choose your country below and select the promotions you are interested in from the in this link: https://promotions.ext.hpe.com/WMCF.Web/uk/en/landing/
